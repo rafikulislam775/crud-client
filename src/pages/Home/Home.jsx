@@ -1,12 +1,19 @@
 import { Outlet, useLoaderData } from "react-router-dom";
-import UserInput from "../UserInput/UserInput";
+
+import Navbar from "../navbar/Navbar";
+import GetData from "../GetData/GetData";
 
 const Home = () => {
   const loadedData = useLoaderData();
   console.log(loadedData);
   return (
     <div>
-      <UserInput></UserInput>
+      <Navbar></Navbar>
+      <div className="grid grid-cols-3 gap-3">
+        {loadedData.map((data) => (
+          <GetData key={data._id} data={data}></GetData>
+        ))}
+      </div>
       <Outlet></Outlet>
     </div>
   );

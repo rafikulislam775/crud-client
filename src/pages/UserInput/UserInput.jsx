@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const UserInput = () => {
   const handleAddProduct = (e) => {
     e?.preventDefault();
@@ -32,13 +32,24 @@ const UserInput = () => {
     //   .then((data) => console.log(data));
 
     //use axios
-    axios
-      .post("http://localhost:5001/userInput", formData)
-      .then((res) => console.log(res.data));
+    axios.post("http://localhost:5001/userInput", formData).then((res) => {
+      if (res.data.acknowledged) {
+        alert("successfully added   your input");
+      }
+      console.log(res.data);
+    });
   };
 
   return (
     <div>
+      <div>
+        {" "}
+        <button className="btn btn-sm btn-outline btn-info">
+          {" "}
+          <Link to="/">Back To Home</Link>
+        </button>
+      </div>
+
       <div className="flex min-h-screen justify-center items-center mx-20">
         <div className="flex-1">
           <form onSubmit={handleAddProduct}>
