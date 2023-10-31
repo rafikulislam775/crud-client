@@ -1,5 +1,16 @@
-const GetData = ({ data }) => {
-  const { img, category, price, rating } = data;
+const GetData = ({ data, setGetInput }) => {
+  const { img, category, price, rating, _id } = data;
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5001/userInput/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -16,7 +27,12 @@ const GetData = ({ data }) => {
             <button className="btn btn-sm btn-outline btn-info">
               Update Now
             </button>
-            <button className="btn btn-error btn-sm btn-outline">X</button>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-error btn-sm btn-outline"
+            >
+              X
+            </button>
           </div>
         </div>
       </div>
