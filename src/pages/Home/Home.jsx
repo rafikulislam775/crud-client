@@ -16,6 +16,8 @@ const Home = () => {
           <GetData
             key={data._id}
             setGetInput={setGetInput}
+            getInput={getInput}
+
             data={data}
           ></GetData>
         ))}

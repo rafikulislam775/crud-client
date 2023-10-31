@@ -1,4 +1,4 @@
-const GetData = ({ data, setGetInput }) => {
+const GetData = ({ data, setGetInput, getInput }) => {
   const { img, category, price, rating, _id } = data;
   const handleDelete = (id) => {
     console.log(id);
@@ -8,6 +8,8 @@ const GetData = ({ data, setGetInput }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        const remaining = getInput.filter((data) => data._id !== id);
+        setGetInput(remaining);
       });
   };
 
