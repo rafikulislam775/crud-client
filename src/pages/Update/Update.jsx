@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Update = () => {
@@ -23,6 +24,27 @@ const Update = () => {
       category,
     };
     console.log(formData);
+    //try to update using fetch
+    // fetch(`http://localhost:5001/userInput/${singleLoadedData._id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    //use axios
+
+    //use axios
+    axios
+      .put(`http://localhost:5001/userInput/${singleLoadedData._id}`, formData)
+      .then((res) => {
+        if (res.data.acknowledged) {
+          alert("successfully added   your input");
+        }
+        console.log(res.data);
+      });
   };
   return (
     <div>
