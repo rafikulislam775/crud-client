@@ -1,7 +1,9 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
-const UserInput = () => {
-  const handleAddProduct = (e) => {
+import { Link, useLoaderData } from "react-router-dom";
+
+const Update = () => {
+  const singleLoadedData = useLoaderData();
+  console.log(singleLoadedData);
+  const handleUpdateProduct = (e) => {
     e?.preventDefault();
     const form = e.target;
     const img = form.img.value;
@@ -20,27 +22,8 @@ const UserInput = () => {
       rating,
       category,
     };
-    // console.log(formData);
-    // fetch
-    // fetch("http://localhost:5001/userInput", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-
-    //use axios
-    axios.post("http://localhost:5001/userInput", formData).then((res) => {
-      if (res.data.acknowledged) {
-        alert("successfully added   your input");
-      }
-      console.log(res.data);
-    });
+    console.log(formData);
   };
-
   return (
     <div>
       <div>
@@ -53,11 +36,12 @@ const UserInput = () => {
 
       <div className="flex min-h-screen justify-center items-center mx-20">
         <div className="flex-1">
-          <form onSubmit={handleAddProduct}>
+          <form onSubmit={handleUpdateProduct}>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="img"
+                defaultValue={singleLoadedData?.img}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
@@ -70,6 +54,7 @@ const UserInput = () => {
               <input
                 type="text"
                 name="name"
+                defaultValue={singleLoadedData?.name}
                 id="floating_password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -98,6 +83,7 @@ const UserInput = () => {
               <input
                 type="text"
                 name="shortDescription"
+                defaultValue={singleLoadedData?.shortDescription}
                 id="floating_password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -112,6 +98,7 @@ const UserInput = () => {
                 <input
                   type="number"
                   name="price"
+                  defaultValue={singleLoadedData?.price}
                   id="floating_first_name"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
@@ -128,6 +115,7 @@ const UserInput = () => {
                 <input
                   type="text"
                   name="rating"
+                  defaultValue={singleLoadedData?.rating}
                   id="floating_last_name"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
@@ -145,7 +133,7 @@ const UserInput = () => {
               type="submit"
               className="text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm w-full sm-w-auto px-5 py-2.5 text-center dark-bg-blue-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800"
             >
-              Add Product
+              Update The Product
             </button>
           </form>
         </div>
@@ -154,4 +142,4 @@ const UserInput = () => {
   );
 };
 
-export default UserInput;
+export default Update;

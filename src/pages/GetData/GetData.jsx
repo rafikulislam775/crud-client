@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const GetData = ({ data, setGetInput, getInput }) => {
   const { img, category, price, rating, _id } = data;
   const handleDelete = (id) => {
@@ -26,9 +28,13 @@ const GetData = ({ data, setGetInput, getInput }) => {
           </div>
 
           <div className="flex justify-between">
-            <button className="btn btn-sm btn-outline btn-info">
-              Update Now
-            </button>
+            <Link to={`/update/${_id}`}>
+              {" "}
+              <button className="btn btn-sm btn-outline btn-info">
+                Update Now
+              </button>
+            </Link>
+
             <button
               onClick={() => handleDelete(_id)}
               className="btn btn-error btn-sm btn-outline"
